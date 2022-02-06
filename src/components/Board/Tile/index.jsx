@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   moveKnight,
   setPossibleMoves,
+  setHasGameStarted,
+  setReachedTarget,
 } from "../../../store/features/gameSlice";
 
 export default function Tile({
@@ -17,14 +19,21 @@ export default function Tile({
   target = false,
 }) {
   const dispatch = useDispatch();
-  const { knightPos, possibleMoves } = useSelector((state) => state.gameState);
+  const { knightPos, targetPos, possibleMoves, hasGameStarted } = useSelector(
+    (state) => state.gameState
+  );
 
   const handleMove = (tile) => {
-    if (possibleMoves.includes(tile)) {
-      dispatch(moveKnight(tile));
-      dispatch(setPossibleMoves(knightPos));
+    if (hasGameStarted) {
+      if (possibleMoves.includes(tile)) {
+        dispatch(moveKnight(tile));
+
+        dispatch(setPossibleMoves(knightPos));
+      } else {
+        alert("can't move the knight to selected position");
+      }
     } else {
-      alert("can't move the knight to selected position");
+      alert("please start the game");
     }
   };
 

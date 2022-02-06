@@ -3,23 +3,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { StyledBoard } from "./board.styled";
 import Tile from "./Tile/index";
 import { createBoard, getTileColor, getPossibleMoves } from "../../utils/utils";
-import { setBoard } from "../../store/features/gameSlice";
+import {
+  setBoard,
+  setReachedTarget,
+  setHasGameStarted,
+} from "../../store/features/gameSlice";
 
 export default function Board(props) {
   const ROW = 8;
   const COLUMN = 8;
-
   const board = createBoard(ROW, COLUMN);
   const firstUpdate = useRef(true);
-
-  const dispatch = useDispatch();
-
   const { knightPos, targetPos } = useSelector((state) => state.gameState);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (firstUpdate) {
       firstUpdate.current = false;
       dispatch(setBoard(board));
+    }
+    if (knightPos === targetPos) {
+      dispatch(setReachedTarget(true));
+      alert("you won! please start it again");
+      dispatch(setHasGameStarted(false));
     }
   }, [knightPos]);
 

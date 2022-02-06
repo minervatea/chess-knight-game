@@ -10,7 +10,7 @@ export default function Main() {
     <StyledLayout container>
       <Grid item xs={12}>
         <StyledHeader>
-          <Typography className="header-text">Chess Game</Typography>
+          <Typography className="header-text">Chess Knight Game</Typography>
         </StyledHeader>
       </Grid>
       <Grid item xs={12}>

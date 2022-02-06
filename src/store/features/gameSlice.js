@@ -7,6 +7,7 @@ const initialState = {
   targetPos: "0",
   possibleMoves: [],
   reachedTarget: false,
+  hasGameStarted: false,
 };
 
 export const gameSlice = createSlice({
@@ -16,7 +17,12 @@ export const gameSlice = createSlice({
     setBoard: (state, { payload: board }) => {
       state.board = board;
     },
-    startGame: (state, action) => {},
+    setHasGameStarted: (state, { payload: hasGameStarted }) => {
+      state.hasGameStarted = hasGameStarted;
+    },
+    setReachedTarget: (state, { payload: reachedTarget }) => {
+      state.reachedTarget = reachedTarget;
+    },
     moveKnight: (state, { payload: move }) => {
       state.knightPos = move;
     },
@@ -35,6 +41,9 @@ export const gameSlice = createSlice({
 export const {
   startGame,
   setBoard,
+
+  setHasGameStarted,
+  setReachedTarget,
   setStartPosition,
   setPossibleMoves,
   moveKnight,
