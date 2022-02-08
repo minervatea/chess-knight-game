@@ -1,13 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getStartPos, getPossibleMoves } from "../../utils/utils";
+import {
+  getStartPos,
+  getPossibleMoves,
+  findMinimumMoves,
+} from "../../utils/utils";
 
 const initialState = {
   board: [],
   knightPos: "0",
-  targetPos: "0",
+  targetPos: "1",
   possibleMoves: [],
   reachedTarget: false,
   hasGameStarted: false,
+  isHintOn: false,
+  hintMoves: [],
 };
 
 export const gameSlice = createSlice({
@@ -35,18 +41,26 @@ export const gameSlice = createSlice({
     setPossibleMoves: (state) => {
       state.possibleMoves = getPossibleMoves(state.knightPos);
     },
+    getHintMoves: (state) => {
+      state.hintMoves = findMinimumMoves(state.knightPos, state.targetPos);
+      state.isHintOn = true;
+    },
+    setIsHintOn: (state, { payload: isHintOn }) => {
+      state.isHintOn = isHintOn;
+    },
   },
 });
 
 export const {
   startGame,
   setBoard,
-
   setHasGameStarted,
   setReachedTarget,
   setStartPosition,
   setPossibleMoves,
+  getHintMoves,
   moveKnight,
+  setIsHintOn,
 } = gameSlice.actions;
 
 export default gameSlice.reducer;
