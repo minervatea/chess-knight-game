@@ -6,9 +6,10 @@ Chess Knight Game built with React, JavaScript
 
 
 
-### Continuous Improvement Point: 
+### How to Play:
 
- - When clicked on Help, it generates minimum path to the target based on current knight's position. When it renders each move, it happens to quickly but wanted to show each move respectively on screen
+1. Click the start button and system will place a knight and target in random position
+2. When you get stuck, press the help button then system wiil show you a next move for the minimal path available
 
 ### Reference:
 
