@@ -9,7 +9,7 @@ Chess Knight Game built with React, JavaScript
 ### How to Play:
 
 1. Click the start button and system will place a knight and target in random position
-2. When you get stuck, press the help button then system wiil show you a next move for the minimal path available
+2. When you get stuck, press the help button then system wiil show you a next move for the minimal path available based on current knight's position
 
 ### Reference:
 
