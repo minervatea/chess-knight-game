@@ -14,6 +14,7 @@ const initialState = {
   hasGameStarted: false,
   isHintOn: false,
   hintMoves: [],
+  hintIdx: 0,
 };
 
 export const gameSlice = createSlice({
@@ -61,6 +62,7 @@ export const {
   getHintMoves,
   moveKnight,
   setIsHintOn,
+  setHintIdx,
 } = gameSlice.actions;
 
 export default gameSlice.reducer;

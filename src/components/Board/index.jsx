@@ -9,6 +9,7 @@ import {
   setReachedTarget,
   setHasGameStarted,
   moveKnight,
+  setPossibleMoves,
 } from "../../store/features/gameSlice";
 
 export default function Board(props) {
@@ -21,10 +22,10 @@ export default function Board(props) {
   );
   const dispatch = useDispatch();
 
-  const autoMoveKnight = useCallback(
-    (move) => new Promise((r) => setTimeout(dispatch(moveKnight(move)), 12000)),
-    [dispatch]
-  );
+  const autoMoveKnight = (move) => {
+    dispatch(moveKnight(move));
+    dispatch(setPossibleMoves(knightPos));
+  };
 
   useEffect(() => {
     if (firstUpdate) {
@@ -33,9 +34,10 @@ export default function Board(props) {
     }
 
     if (isHintOn) {
-      hintMoves.forEach(async (move) => {
-        await autoMoveKnight(move);
-      });
+      const effect = async () => {
+        await autoMoveKnight(hintMoves[1]);
+      };
+      effect();
       dispatch(setIsHintOn(false));
     }
 
